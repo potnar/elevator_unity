@@ -9,7 +9,7 @@ public class MoveElevator : MonoBehaviour
     public GameObject SecondDoorLeft;
     public GameObject SecondDoorRight;
     public GameObject SecondTrigger;
-    
+
     //public GameObject Player;
     //public Collider PlayerColl;
 
@@ -19,7 +19,7 @@ public class MoveElevator : MonoBehaviour
     public Animator rightAnimSecond;
     public Animator ElevatorAnim;
     private bool ElevatorIsMove;
-   
+
     private void Start()
     {
         leftAnimSecond = SecondDoorLeft.GetComponent<Animator>();
@@ -31,32 +31,30 @@ public class MoveElevator : MonoBehaviour
     }
     private void Update()
     {
+        Debug.Log(ElevatorAnim.GetFloat("ElevatorSlider"));
         //ElevatorIsMove = false;
         if (ElevatorIsMove == true)
         {
-            ElevatorSlides(1.2f);
-            
+            ElevatorAnim.SetInteger("ElevatorSlider", 0);
+
         }
 
-        
-        /*if (Elevator.transform.position.y > 7f)
+
+        if (Elevator.transform.position.y > 7f)
         {
-            
-        }*/
+
+            elevatorSound.Stop();
+        }
     }
     private void OnTriggerEnter(Collider coll)
     {
-        
+
         if (coll.gameObject.tag == "Player")
         {
             SecondSlideDoor(true);
-            elevatorSound.Stop();
+            Debug.Log("stop sound");
+        }
 
-        }
-        if (coll.gameObject.tag == "Player")
-        {
-            ElevatorSlides(2.4f);
-        }
 
     }
     private void OnTriggerExit(Collider coll)
@@ -72,15 +70,16 @@ public class MoveElevator : MonoBehaviour
         ElevatorIsMove = true;
         elevatorSound.Play();
         SecondSlideDoor(true);
-        if (Elevator.transform.position.y > 7f)
-        {
-            ElevatorSlides(0.7f);
-        }
+        // if (Elevator.transform.position.y > 7f)
+        // {
+        //     ElevatorSlides(0.7f);
+        // }
 
     }
     void OnMouseUp()
     {
         SecondSlideDoor(false);
+        ElevatorIsMove = false;
     }
     public void SecondSlideDoor(bool state)
     {
@@ -88,9 +87,8 @@ public class MoveElevator : MonoBehaviour
         rightAnimSecond.SetBool("SecondSlide", state);
     }
 
-    public void ElevatorSlides(float state)
-    {
-        ElevatorAnim.SetFloat("ElevatorSlider", state);
-    }
-    
+
+
+
+
 }

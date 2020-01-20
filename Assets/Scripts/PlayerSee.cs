@@ -22,10 +22,7 @@ public class PlayerSee : MonoBehaviour
     {
         CameraRotation();
     }
-    private void LockCursor()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
+
     private void CameraRotation()
     {
         float mouseX = Input.GetAxis(mouseXInputName) * mouseSensitivity * Time.deltaTime;

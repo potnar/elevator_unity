@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class OpenSecondDoor : MonoBehaviour
 {
+    public GameObject Elevator;
     public GameObject SecondDoorLeft;
     public GameObject SecondDoorRight;
     public GameObject SecondTrigger;
     public Animator leftAnimSecond;
     public Animator rightAnimSecond;
     //public Animator ElevatorAnim;
-
+    public Animator ElevatorAnim;
     private void Start()
     {
         leftAnimSecond = SecondDoorLeft.GetComponent<Animator>();
         rightAnimSecond = SecondDoorRight.GetComponent<Animator>();
+        ElevatorAnim = Elevator.GetComponent<Animator>();
     }
     private void OnTriggerEnter(Collider coll)
     {
@@ -46,5 +48,9 @@ public class OpenSecondDoor : MonoBehaviour
     {
         leftAnimSecond.SetBool("SecondSlide", state);
         rightAnimSecond.SetBool("SecondSlide", state);
+    }
+    public void ElevatorSlides(float state)
+    {
+        ElevatorAnim.SetFloat("ElevatorSlider", state);
     }
 }

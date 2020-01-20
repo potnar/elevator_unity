@@ -24,10 +24,11 @@ public class MoveDoor : MonoBehaviour
     }
     private void Update()
     {
+
         if (DoorIsOpening == true)
         {
-            ElevatorSlides(0.6f);
-            
+            ElevatorAnim.SetInteger("ElevatorSlider", 1);
+
             //SlideDoor(true);
         }
         /*if (ElevatorAnim.GetCurrentAnimatorStateInfo(0).IsTag("Zero"))
@@ -56,23 +57,20 @@ public class MoveDoor : MonoBehaviour
         {
             SlideDoor(true);
         }
-        if (coll.gameObject.tag == "Player")
-        {
-            ElevatorSlides(0.4f);
-        }
+
     }
     private void OnTriggerStay(Collider coll)
     {
-        
-            if (coll.gameObject.tag == "Player")
-            {
-                SlideDoor(true);
-            }
-        
+
+        if (coll.gameObject.tag == "Player")
+        {
+            SlideDoor(true);
+        }
+
     }
     private void OnTriggerExit(Collider coll)
     {
-        if(coll.gameObject.tag == "Player")
+        if (coll.gameObject.tag == "Player")
         {
             SlideDoor(false);
         }
